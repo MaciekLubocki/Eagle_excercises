@@ -7,7 +7,7 @@ numbers = [5,32,56,2,2,16,7,10,23,100]
 
 for number in numbers:
     if number < 10:
-        number == 10
+        number = 10
         print(number)
     else:
         number = round(number, -1)
