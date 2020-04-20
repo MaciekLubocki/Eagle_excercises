@@ -2,8 +2,10 @@ numbers = [5,32,56,2,2,16,7,10,23,100]
 mean_number = 0
 
 for i, number in enumerate(numbers):
-     if numbers[i] < 10:
-         numbers[i] = 10
+     if numbers[i] <= 2:
+        numbers[i] = 0
+     elif 2 < numbers[i] < 10:
+          numbers[i] = 10
      else:
          numbers[i] = round(number, -1)
 print(numbers) 
@@ -12,9 +14,12 @@ numbers.remove(max(numbers))
 numbers.remove(min(numbers))
 print(numbers) 
 
-mean_number = sum(numbers) / len(numbers)
+mean_number = round(sum(numbers) / len(numbers),-1)
 
 print(mean_number)
+
+
+
 
 
 #   Znajdź średnią zmodyfikowanej listy
