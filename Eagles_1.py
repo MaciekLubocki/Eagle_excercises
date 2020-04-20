@@ -1,17 +1,43 @@
 numbers = [5,32,56,2,2,16,7,10,23,100]
 mean_number = 0
 
-
-
-numbers = [5,32,56,2,2,16,7,10,23,100]
-
-for number in numbers:
-    if number < 10:
-        number = 10
-        print(number)
+for number, item in enumerate(numbers):
+    if val[number] < 10:
+       numbers[number] = 10
     else:
-        number = round(number, -1)
-        print(number)
+        numbers[number] = round(number, -1)
+        
+print(numbers)
+
+
+for number, item in enumerate(list):
+       if number in item < 10:
+       item = replace_all(...)
+       list[idx] = item
+
+
+
+for item in list:
+    if "foo" in item:
+        item = replace_all(item, replaceDictionary)
+        list[item] = item
+        print item
+
+
+
+# for number in numbers:
+#     if number < 10:
+#        numbers[number] = 10
+#     else:
+#         numbers[number] = round(number, -1)
+        
+# print(numbers)
+
+
+x = ('apple', 'banana', 'cherry')
+y = enumerate(x)
+
+print(list(y))
 
 
 # Znajdź średnią zmodyfikowanej listy
