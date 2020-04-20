@@ -8,6 +8,14 @@ for i, number in enumerate(numbers):
          numbers[i] = round(number, -1)
 print(numbers) 
 
+numbers.remove(max(numbers))
+numbers.remove(min(numbers))
+print(numbers) 
+
+mean_number = sum(numbers) / len(numbers)
+
+print(mean_number)
+
 
 #   Znajdź średnią zmodyfikowanej listy
 # Twoim zadaniem jest zmodyfikowanie listy przypisanej do zmiennej numbers w taki sposób, aby każdy jej element zaokrąglić do pełnej dziesiątki. Postaraj się nie tworzyć nowej listy będącej zmodyfikowaną listą numbers, lecz zmodyfikować listę numbers.
