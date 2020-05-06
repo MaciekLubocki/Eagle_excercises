@@ -55,7 +55,7 @@ if __name__ == "__main__":
         print(item)
 
 
-    func_name = sys._getframe().f_code.co_name
+    
     operation = input("Enter correct operator:")
     parameter = 1
     function_name = calculations[operation].__name__
