@@ -61,8 +61,8 @@ if __name__ == "__main__":
     function_name = calculations[operation].__name__
     
 
-arg_number_1 = testify("wprowadz pierwsza cyfre: ")
-arg_number_2 = testify("wprowadz drugą cyfre: ")
+arg_number_1 = testify("Enter first number: ")
+arg_number_2 = testify("Enter second number: ")
 
 
 calculator(arg_number_1, arg_number_2, parameter)
