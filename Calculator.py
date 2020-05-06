@@ -30,7 +30,7 @@ def testify(arg_test):
         try:
             arg_test = int(input(arg_test))
         except ValueError: 
-            print ("Enter valid int value")
+            print ("Enter corret int value")
             continue
         else:   
             logging.info("Arg_test value is: ", arg_test)
