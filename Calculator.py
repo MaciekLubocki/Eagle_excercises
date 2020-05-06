@@ -9,7 +9,7 @@ import sys
 logging.basicConfig(level=logging.DEBUG)
 
 # Function definitions
-def calculator(arg_number_1, arg_number_2, parameter):
+def calculator(arg_number_1, arg_number_2):
     print("You have chosen ", function_name, ". So: ", arg_number_1, operation  ,arg_number_2, "=", calculations[operation](arg_number_1, arg_number_2))
    
 def add(a, b):
@@ -65,6 +65,6 @@ arg_number_1 = testify("Enter first number: ")
 arg_number_2 = testify("Enter second number: ")
 
 
-calculator(arg_number_1, arg_number_2, parameter)
+calculator(arg_number_1, arg_number_2)
 
 
