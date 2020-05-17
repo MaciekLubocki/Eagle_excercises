@@ -1,73 +1,69 @@
-
 # Import modules
-
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
 
-# tutaj przeniosłem deklarację function_name mam błąd związany ze zmiennymi calculations/operation...co z tym zrobić?
-function_name = calculations[operation].__name__
-
-# Function definitions
-def calculator(arg_number_1, arg_number_2):
-    
-# zmiana z print na loggin plus złamanie linii
-    logging.info("You have chosen ", function_name, ". So: ", arg_number_1, operation  ,arg_number_2, "=", 
-    calculations[operation](arg_number_1, arg_number_2))
-   
 def add(a, b):
     return a + b
+
 
 def sub(a, b):
     return a - b
 
+
 def mul(a, b):
     return a * b
 
+
 def div(a, b):
+    if b == 0:
+        return "Nie dziel przez 0"
     return a / b
+
+
+calculations = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": div
+}
 
 
 def get_argument(arg_test):
     while True:
         try:
             arg_test = int(input(arg_test))
-        except ValueError: 
-            print ("Enter corret int value")
+        except ValueError:
+            print("Enter corret int value")
             continue
-        else:   
-            logging.info("Arg_test value is: ", arg_test)
+        else:
+            logging.info(f"Arg_test value is: {arg_test}")
             return arg_test
-            
-            
-#przeniosłem do funkcji poniższy fragment, funkcja bez argumentów)
+
+
+# Function definitions
+def calculator(operation, arg_number_1, arg_number_2, calculations):
+    # zmiana z print na loggin plus złamanie linii
+    result = calculations[operation](arg_number_1, arg_number_2)
+    function_name = calculations[operation].__name__
+
+    logging.info(f"You have chosen {function_name}. So: {arg_number_1} {operation} {arg_number_2} = {result}")
+    return result
+
+
+# przeniosłem do funkcji poniższy fragment, funkcja bez argumentów)
 def calc():
+    print('What do you want me to do (choose appropriate number): ')
+    for item in calculations:
+        print(item)
 
-    if __name__ == "__main__":
+    operation = input("Enter correct operator:")
+    arg_number_1 = get_argument("Enter first number: ")
+    arg_number_2 = get_argument("Enter second number: ")
 
-
-        calculations = {
-            "+": add,
-            "-": sub,
-            "*": mul,
-            "/": div
-        }
-
-        print('What do you want me to do (choose appropriate number): ')
-        for item in calculations:
-            print(item)
-
-        operation = input("Enter correct operator:")
-                
-        arg_number_1 = get_argument("Enter first number: ")
-        arg_number_2 = get_argument("Enter second number: ")
-    
-        return arg_number_1, arg_number_2;
-    
-    logging.info(calc())
-
-#chciałem wywołać funkcję w funkcji ale komunikuje że nie zna drugiej zmiennej którą przecież zawarłem w funkcji calc() i oddaję w return
-calculator(calc())
+    calculator(operation, arg_number_1, arg_number_2, calculations)
 
 
+if __name__ == "__main__":
+    calc()
