@@ -18,7 +18,7 @@ def mul(a, b):
 
 def div(a, b):
     if b == 0:
-        return "Nie dziel przez 0"
+        return "Don't divide by 0"
     return a / b
 
 
