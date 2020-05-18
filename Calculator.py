@@ -37,8 +37,8 @@ def get_argument(arg_test):
         except ValueError:
             print("Enter corret int value")
             continue
-        else:
-            logging.info(f"Arg_test value is: {arg_test}")
+        else:                                                                                                   
+            # logging.info(f"Arg_test value is: {arg_test}")
             return arg_test
 
 
@@ -46,18 +46,23 @@ def get_argument(arg_test):
 def calculator(operation, arg_number_1, arg_number_2, calculations):
     result = round(calculations[operation](arg_number_1, arg_number_2), 2)
     function_name = calculations[operation].__name__
+    
+    result_text = (f""" {function_name} {arg_number_1} i {arg_number_2} \n""")
+    result_text += (f" Wynik to:  {result}")
+    print(result_text)
 
-    logging.info(f" {function_name} {arg_number_1} i {arg_number_2}  \n  Wynik to:  {result}")
     return result
 
 
-# przeniosłem do funkcji poniższy fragment, funkcja bez argumentów)
 def calc():
-    print('Provide calculation choosing from below list: ')
-    for item, calc_type in calculations.items():
-        print(item, calc_type.__name__)
+    print('Podaj działanie, posługując się odpowiednią liczbą: ')
+    # for item, calc_type in calculations.items():
+    #     print(item, calc_type.__name__)
 
-    operation = input("Enter correct operator:")
+    for item, calc_type in calculations.items():
+         print(item, calc_type.__name__, end=" ")
+        
+    operation = input()
     arg_number_1 = get_argument("Podaj składnik 1. ")
     arg_number_2 = get_argument("Podaj składnik 2. ")
 
