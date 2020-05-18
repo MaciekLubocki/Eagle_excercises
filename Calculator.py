@@ -4,36 +4,36 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 
-def add(a, b):
+def Dodawanie(a, b):
     return a + b
 
 
-def sub(a, b):
+def Odejmowanie(a, b):
     return a - b
 
 
-def mul(a, b):
+def Mnożenie(a, b):
     return a * b
 
 
-def div(a, b):
+def Dzielenie(a, b):
     if b == 0:
         return "Don't divide by 0"
     return a / b
 
 
 calculations = {
-    "+": add,
-    "-": sub,
-    "*": mul,
-    "/": div
+    "1": Dodawanie,
+    "2": Odejmowanie,
+    "3": Mnożenie,
+    "4": Dzielenie
 }
 
 
 def get_argument(arg_test):
     while True:
         try:
-            arg_test = int(input(arg_test))
+            arg_test = float(input(arg_test))
         except ValueError:
             print("Enter corret int value")
             continue
@@ -44,23 +44,22 @@ def get_argument(arg_test):
 
 # Function definitions
 def calculator(operation, arg_number_1, arg_number_2, calculations):
-    # zmiana z print na loggin plus złamanie linii
-    result = calculations[operation](arg_number_1, arg_number_2)
+    result = round(calculations[operation](arg_number_1, arg_number_2), 2)
     function_name = calculations[operation].__name__
 
-    logging.info(f"You have chosen {function_name}. So: {arg_number_1} {operation} {arg_number_2} = {result}")
+    logging.info(f" {function_name} {arg_number_1} i {arg_number_2}  \n  Wynik to:  {result}")
     return result
 
 
 # przeniosłem do funkcji poniższy fragment, funkcja bez argumentów)
 def calc():
-    print('What do you want me to do (choose appropriate number): ')
-    for item in calculations:
-        print(item)
+    print('Provide calculation choosing from below list: ')
+    for item, calc_type in calculations.items():
+        print(item, calc_type.__name__)
 
     operation = input("Enter correct operator:")
-    arg_number_1 = get_argument("Enter first number: ")
-    arg_number_2 = get_argument("Enter second number: ")
+    arg_number_1 = get_argument("Podaj składnik 1. ")
+    arg_number_2 = get_argument("Podaj składnik 2. ")
 
     calculator(operation, arg_number_1, arg_number_2, calculations)
 
