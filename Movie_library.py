@@ -2,13 +2,12 @@ import random
 import operator
 
 class Movie():
-  instances = []
   def __init__(self, title, release_date, genre, display_counter):
        self.title = title
        self.release_date = release_date
        self.genre = genre
        self.display_counter = display_counter
-       __class__.instances.append(self)
+  
 
  
   def play(self):
@@ -20,12 +19,11 @@ class Movie():
 
     
 class Serial(Movie):
-  instances = []
   def __init__(self, episode_number, season_number, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.episode_number = episode_number
         self.season_number = season_number
-        __class__.instances.append(self)
+  
         
   def __str__(self):
         return f'{self.title} S{self.season_number}E{self.episode_number}'
