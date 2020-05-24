@@ -47,18 +47,7 @@ class BusinessContact(BaseContact):
   def __str__(self):
       return f'{self.contact} / {self.email} na stanowisku: {self.position} w: {self.company} tel.: {self.work_phone}, ilość liter (im/naz): {self.label_length}'
 
-  @property
-  def contact(self):
-      return f' Wybieram numer {self.phone} i dzwonię do {self.first_name} {self.second_name}'
-
-  @property
-  def label_length(self):
-   fn_count = len(self.first_name)
-   sn_count = len(self.second_name)
-   return fn_count, sn_count
-
-
-
+  
 #Zmienne i ich instancje
 
 erika_blackwell = BaseContact(first_name="Erika", second_name="Blackwell", phone="359.636.0108", email="feliciarodriguez@hotmail.com" )
