@@ -3,7 +3,6 @@
 from faker import Faker
 fake = Faker()
 
-
 #deklaracja klasy BaseContact
 
 class BaseContact:
@@ -31,7 +30,6 @@ class BaseContact:
      return fn_count, sn_count
 
 
-
 #deklaracja klasy BusinessContact
 
 class BusinessContact(BaseContact):
@@ -47,7 +45,6 @@ class BusinessContact(BaseContact):
   def __str__(self):
       return f'{self.contact} / {self.email} na stanowisku: {self.position} w: {self.company} tel.: {self.work_phone}, ilość liter (im/naz): {self.label_length}'
 
-  
 #Zmienne i ich instancje
 
 erika_blackwell = BaseContact(first_name="Erika", second_name="Blackwell", phone="359.636.0108", email="feliciarodriguez@hotmail.com" )
@@ -64,7 +61,6 @@ cole_franklin = BaseContact(first_name="Cole", second_name="Franklin", phone="(5
 card = [erika_blackwell, george_bates, brandon_clark, katie_casey, daniel_chapman, natasha_perkins, ronald_turner, john_lyons, robert_rubio, cole_franklin]
 
 print(*card, sep="\n")
-
 
 #create_contacts function
 
@@ -85,10 +81,11 @@ def create_contacts(type, amount):
       card_string +=  (f""" {(first_name.lower() + '_' + second_name.lower())} = BusinessContact(first_name="{first_name}", second_name="{second_name}", phone="{fake.phone_number()}", position="{fake.job()}", company="{fake.company()}", work_phone="{fake.phone_number()}", email="{fake.email()}")""") + "\n"
     lp = lp + 1
 
-  def Convert(string): 
+  def convert(string): 
       card_list = list(card_string.split("\n")) 
       return card_list 
-  card_list1 = (Convert(card_string)) 
+  card_list1 = (convert(card_string)) 
   print(*card_list1, sep="\n")
-  
-create_contacts('','') 
+
+if __name__ == "__main__":  
+    create_contacts('','') 
