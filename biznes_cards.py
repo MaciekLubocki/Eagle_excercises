@@ -1,89 +1,73 @@
 # import biblioteki zewnętrznej
 
 from faker import Faker
-fake = Faker("pl_PL")
+fake = Faker()
 
 # deklaracja klasy BaseContact
 
 
 class BaseContact:
-    def __init__(self, intro, first_name, second_name, phone, email):
+    def __init__(self, first_name, second_name, email, phone):
         self.first_name = first_name
         self.second_name = second_name
-        self.phone = phone
         self.email = email
-
-    @property
-    def full_name(self):
-        return f"{self.first_name} {self.second_name}"
+        self.phone = phone
 
     @property
     def label_length(self):
-        # return len(self.full_name)
         return len(self.first_name), len(self.second_name)
 
-    @property
-    def contact_number(self):
-        return self.phone
-
-    # @property
-    # def intro(self):
-    #     return "Biznes cards = "
+    def __str__(self):
+        return f"{self.first_name} {self.second_name}, email: {self.email}, phone: {self.phone}"
 
     def contact(self):
-        return f"Wybieram numer {self.contact_number} i dzownię do {self.full_name}"
+        return f"Wybieram numer {self.phone} i dzwonię do {self.first_name} {self.second_name}"
 
+
+card_id1 = BaseContact(first_name=fake.first_name(
+), second_name=fake.last_name(), email=fake.email(), phone=fake.phone_number())
 
 # deklaracja klasy BusinessContact
 
 
 class BusinessContact(BaseContact):
-    def __init__(self, position, company, work_phone,  *args, **kwargs):
+    def __init__(self, position, company, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.position = position
         self.company = company
-        self.work_phone = work_phone
 
-    @property
-    def contact_number(self):
-        return self.work_phone
+    def __str__(self):
+        return f"{self.first_name} {self.second_name}, company: {self.company}, position: {self.position}, email: {self.email}, phone: {self.phone}"
 
 
 def create_contacts(card_type, amount):
-    cards = []
-    query = input("Provide splited by comma \n type of cards you need \n (Please choose by number 1. Base Type, 2.Business Type) \n and how many of those do you need : ").split(",")
-    card_type = int(query[0])
-    amount = int(query[1])
-    for i in range(int(amount)):
-        if card_type == 1:
-            cards.append(
-                BaseContact(
-                    intro="Business cards = ",
-                    first_name=fake.first_name(),
-                    second_name=fake.last_name(),
-                    phone=fake.phone_number(),
-                    email=fake.email(),
-
-                )
-            )
-        elif card_type == 2:
-            cards.append(
-                BusinessContact(
-                    intro="Base cards = ",
-                    first_name=fake.first_name(),
-                    second_name=fake.last_name(),
-                    phone=fake.phone_number(),
-                    position=fake.job(),
-                    company=fake.company(),
-                    work_phone=fake.phone_number(),
-                    email=fake.email(),
-
-                )
-            )
-    return cards
+    if card_type == "base":
+        basic = [
+            BaseContact(
+                first_name=fake.first_name(),
+                second_name=fake.last_name(),
+                phone=fake.phone_number(),
+                email=fake.email()) for _ in range(amount)]
+        print(*basic, sep="\n")
+    if card_type == "business":
+        business = [
+            BusinessContact(
+                first_name=fake.first_name(),
+                second_name=fake.last_name(),
+                email=fake.email(),
+                phone=fake.phone_number(),
+                position=fake.job(),
+                company=fake.company())for _ in range(amount)]
+        print(*business, sep="\n")
 
 
 if __name__ == "__main__":
-    cards = create_contacts('', '')
-    for card in cards:
-        print(card.contact(), '. Długość im/naz: ', card.label_length)
+
+    print("Base cards", sep="\n")
+    create_contacts("base", 10)
+    print('')
+    print("Business cards", sep="\n")
+    create_contacts("business", 10)
+    print('')
+    print(card_id1)
+    print(card_id1.contact())
