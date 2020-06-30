@@ -24,9 +24,6 @@ class BaseContact:
         return f"Wybieram numer {self.phone} i dzwonię do {self.first_name} {self.second_name}"
 
 
-card_id1 = BaseContact(first_name=fake.first_name(
-), second_name=fake.last_name(), email=fake.email(), phone=fake.phone_number())
-
 # deklaracja klasy BusinessContact
 
 
@@ -41,33 +38,54 @@ class BusinessContact(BaseContact):
 
 
 def create_contacts(card_type, amount):
-    if card_type == "base":
-        basic = [
-            BaseContact(
-                first_name=fake.first_name(),
-                second_name=fake.last_name(),
-                phone=fake.phone_number(),
-                email=fake.email()) for _ in range(amount)]
-        print(*basic, sep="\n")
-    if card_type == "business":
-        business = [
-            BusinessContact(
-                first_name=fake.first_name(),
-                second_name=fake.last_name(),
-                email=fake.email(),
-                phone=fake.phone_number(),
-                position=fake.job(),
-                company=fake.company())for _ in range(amount)]
-        print(*business, sep="\n")
+    cards = []
+    for i in range(amount):
+        if card_type == "base":
+            cards.append(
+                BaseContact(
+                    first_name=fake.first_name(),
+                    second_name=fake.last_name(),
+                    phone=fake.phone_number(),
+                    email=fake.email(),
+                )
+            )
+        elif card_type == "business":
+            cards.append(
+                BusinessContact(
+                    first_name=fake.first_name(),
+                    second_name=fake.last_name(),
+                    email=fake.email(),
+                    phone=fake.phone_number(),
+                    position=fake.job(),
+                    company=fake.company(),
+                )
+            )
+
+    return cards
 
 
 if __name__ == "__main__":
 
-    print("Base cards", sep="\n")
-    create_contacts("base", 10)
-    print('')
-    print("Business cards", sep="\n")
-    create_contacts("business", 10)
-    print('')
-    print(card_id1)
-    print(card_id1.contact())
+    print("Generuję zwykłe kontakty")
+    base_cards = create_contacts("base", 4)
+    for card in base_cards:
+        print(card.first_name,
+              card.second_name,
+              card.email,
+              card.phone,
+              card.label_length)
+        print()
+    print(card.contact())
+
+    print("Generuję kontakty biznesowe")
+    business_cards = create_contacts("business", 6)
+    for card in business_cards:
+        print(card.first_name,
+              card.second_name,
+              card.email,
+              card.phone,
+              card.position,
+              card.company,
+              card.label_length)
+        print()
+    print(card.contact())
